@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login And Registration Form</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+            </div>
+            <form id="login" class="input-group">
+                <input type="text" class="input-field" placeholder="User Id" required>
+                <input type="text" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="chech-box"><span>Remember Password</span>
+                <button type="submit" class="submit-btn" onclick="signIn()">Log In</button>
+            </form>
+            <form id="register" class="input-group">
+                <input type="text" class="input-field" id="name" placeholder="User Id" required>
+                <input type="email" class="input-field" id="email" placeholder="Email Id" required>
+                <input type="text" class="input-field" id="pass" placeholder="Enter Password" required>
+                <input type="text" class="input-field" id="cpass" placeholder="Retype Password" required>
+                <input type="checkbox" class="chech-box"><span>I agree to the terms & conditions</span>
+                <button type="submit" class="submit-btn" onclick="signUp()">Register</button>
+            </form>
+        </div>
+    
+     </div>
+
+     <script>
+        var x = document.getElementById("login");
+var y = document.getElementById("register");
+var z = document.getElementById("btn");
+
+function register(){
+   x.style.left = "-400px";
+   y.style.left = "50px";
+   z.style.left = "110px";
+}
+function login(){
+   x.style.left = "50px";
+   y.style.left = "450px";
+   z.style.left = "0px";
+}
+
+var nameArray=[];
+var passwordArray=[];
+var emailArray=[];
+
+
+var loginBox = document.getElementById("signin_box");
+var regBox = document.getElementById("signup_box");
+var forgetBox = document.getElementById("forgot");
+
+
+function signUp(){
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("pass").value;
+    var passwordRetype = document.getElementById("cpass").value;
+
+    if (name == ""){
+        alert("Username required.");
+        return ;
+    }
+    else if (email == ""){
+      alert("Email required");
+      return ;
+    }
+    else if (password == ""){
+        alert("Password required.");
+        return ;
+    }
+    else if (passwordRetype == ""){
+        alert("Password required.");
+        return ;
+    }
+    else if ( password != passwordRetype ){
+        alert("Password don't match retype your Password.");
+        return;
+    }
+    else if(nameArray.indexOf(name) == -1){
+        nameArray.push(name);
+        passwordArray.push(password);
+        emailArray.push(email);
+
+        alert(name + "  Thanks for registration. \nTry to login Now");
+
+        document.getElementById("name").value ="";
+        document.getElementById("email").value="";
+        document.getElementById("pass").value="";
+        document.getElementById("cpass").value="";
+    }
+    else{
+        alert(name + " is already register.");
+        return ;
+    }
+}
+function signIn(){
+
+    var name = document.getElementById("sname").value;
+    var password = document.getElementById("spass").value;
+
+    var i = nameArray.indexOf(name);
+
+    if(nameArray.indexOf(name) == -1){
+        if (name == ""){
+            alert("Username required.");
+            return ;
+        }
+        alert("Username does not exist.");
+        return ;
+    }
+    else if(passwordArray[i] != password){
+        if (password == ""){
+            alert("Password required.");
+            return ;
+        }
+        alert("No scam applicable here. Enter the correct password");
+        return ;
+    }
+    else {
+        alert(name + " yor are login Now \n welcome to our website.");
+        {window.open('home.html')}
+
+        document.getElementById("sname").value ="";
+        document.getElementById("spass").value="";
+        return;
+}
+
+}
+     </script>
+    
+</body>
+</html>
